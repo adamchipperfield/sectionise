@@ -1,6 +1,8 @@
 #!/usr/bin/env node
+const chalk = require('chalk');
 const prompt = require('prompt');
 const fs = require('fs');
+const package = require('./package.json');
 
 /**
  * Data schema.
@@ -30,7 +32,7 @@ const paths = {
 /**
  * Introduction.
  */
-console.log('Welcome to Sections. 👋');
+console.log(`\n${chalk.green('sectionise v')}${chalk.green(package.version)}\n`);
 
 /**
  * Request section info.
@@ -45,23 +47,24 @@ prompt.get(schema, function(error, result) {
   createLiquid(result);
   createScript(result);
   createStyles(result);
+
+  console.log(`\n${chalk.yellow('★')}  Section created successfully.\n`);
 });
 
 /**
  * Create the liquid file.
  */
-function createLiquid(data) {
+async function createLiquid(data) {
   if (!fs.existsSync(paths.liquid)) {
     fs.mkdirSync(paths.liquid, {recursive: true});
   }
 
-  fs.appendFile(`${paths.liquid}/${handleize(data.title)}.liquid`, getSectionTemplate(data), function(error) {
-    if (error) {
-      return error;
-    }
-
-    console.log('✅ Liquid file created.');
-  });
+  try {
+    fs.appendFileSync(`${paths.liquid}/${handleize(data.title)}.liquid`, getSectionTemplate(data));
+    console.log(`\n${chalk.green('✓')}${chalk.white('  Liquid file created.')}`);
+  } catch (error) {
+    return error;
+  }
 }
 
 /**
@@ -72,13 +75,12 @@ function createScript(data) {
     fs.mkdirSync(paths.scripts, {recursive: true});
   }
 
-  fs.appendFile(`${paths.scripts}/${handleize(data.title)}.js`, getScriptTemplate(data), function(error) {
-    if (error) {
-      return error;
-    }
-
-    console.log('✅ Script file created.');
-  })
+  try {
+    fs.appendFileSync(`${paths.scripts}/${handleize(data.title)}.js`, getScriptTemplate(data));
+    console.log(`\n${chalk.green('✓')}${chalk.white('  Script file created.')}`);
+  } catch (error) {
+    return error;
+  }
 }
 
 /**
@@ -89,13 +91,12 @@ function createStyles(data) {
     fs.mkdirSync(paths.styles, {recursive: true});
   }
 
-  fs.appendFile(`${paths.styles}/${handleize(data.title)}.scss`, getStyleTemplate(data), function(error) {
-    if (error) {
-      return error;
-    }
-
-    console.log('✅ Style file created.');
-  })
+  try {
+    fs.appendFileSync(`${paths.styles}/${handleize(data.title)}.scss`, getStyleTemplate(data));
+    console.log(`\n${chalk.green('✓')}${chalk.white('  Style file created.')}`);
+  } catch (error) {
+    return error;
+  }
 }
 
 /**
