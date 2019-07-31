@@ -1,11 +1,11 @@
 {
   "name": "sectionise",
   "locale": "en-gb",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A CLI tool for generating Shopify sections in Slate",
   "main": "index.js",
   "bin": {
-    "sections": "./index.js"
+    "sectionise": "./index.js"
   },
   "author": "Adam Chipperfield",
   "license": "ISC",
