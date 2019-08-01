@@ -34,6 +34,24 @@ const paths = {
  */
 console.log(`\n${chalk.green('sectionise v')}${chalk.green(package.version)}\n`);
 
+if (process.argv.length > 2) {
+  /**
+   * Arguments have been provided.
+   */
+  const result = {
+    title: process.argv[2],
+    description: process.argv[3],
+  };
+
+  createLiquid(result);
+  createScript(result);
+  createStyles(result);
+
+  return;
+}
+
+
+
 /**
  * Request section info.
  */
