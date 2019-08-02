@@ -1,7 +1,7 @@
 {
   "name": "sectionise",
   "locale": "en-gb",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "A CLI tool for generating Shopify sections in Slate",
   "main": "./index.js",
   "preferGlobal": true,

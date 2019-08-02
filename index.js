@@ -121,12 +121,12 @@ function createStyles(data) {
  * Returns the section mark up.
  */
 function getSectionTemplate(data) {
-  return `{%- comment -%}
+  return `{% comment %}
 ----------------------------------------------------------------------------
   Section: ${data.title}
   - ${data.description}
 ----------------------------------------------------------------------------
-{%- endcomment -%}
+{% endcomment %}
 <section
   class="${handleize(data.title)}"
   data-section-type="${handleize(data.title)}"
@@ -161,7 +161,7 @@ register('${handleize(data.title)}', {
   onLoad() {
 
   },
-}); 
+});
 `;
 }
 
